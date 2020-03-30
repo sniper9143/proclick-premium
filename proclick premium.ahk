@@ -1,6 +1,4 @@
 /*
-Do not touch these variables ^^
-
 +========================================================================================================+
 +========================================================================================================+
 +========================================================================================================+
@@ -13,174 +11,399 @@ Do not touch these variables ^^
 |  |  |  .  \     \     ||     | |  \     ||  .  |    |  |  |  .  \|     ||   |   | |  | |     ||   |   |
 |__|  |__|\_|\___/ \____||_____||____\____||__|\_|    |__|  |__|\_||_____||___|___||____| \__,_||___|___|
                                                                                                          
-										+=~ BY SNIPER9143 ~=+
+                                        +=~ BY SNIPER9143 ~=+
 
 +========================================================================================================+
 +========================================================================================================+
 +========================================================================================================+
 
-Welcom to proclick premium
+             !+ ProClick Premium, The quieter you become, the more you can hear +1
+             
+             
+           ***The most Undetectable, and powerful AutoHotkey Script to exist on the internet***
 
-To use this script there are several variables you can change
++========================================================================================================+
+Below is a tutorial and how you can change various options on the script
++========================================================================================================+
 
+                                            +=~ PRESETS ~=+
+
+1 - JUMPER (Fast start-up, medium-end, hard to detect)
+2 - CLASSIC (Constant clicking no changes in cps and movement, easily detected)
+3 - TURTLE (Slow startup and slow ending, hard to detect)
+4 - SNIPER (Fast start-up, slow ending, precise clicking with little movement)
+6 - SPRAY (Fast startup, fast ending, clicking is very spread out, with a lot of movement)
+7 - NEEDLE (Slow startup, slow ending, clicking is very precise)
+8 + CUSTOM (You can create custom presets by adding your variables)
+
++========================================================================================================+
 
 */
 
-PRESET := 1 ; pick 1-7 to change your preset
-
+PRESET := 1 ; pick "PRESET := 1" through "PRESET := 7"   to change your preset (remember to only change the number)
 
 /*
 
 +========================================================================================================+
 
-											+=~ PRESETS ~=+
+                                            +=~ TOGGLE ~=+
 
-1 - JUMPER (Fast start up, medium ending, hard to detect)
-2 - CLASSIC (Constant clicking no changes in cps and movement, easily detected)
-3 - TURTLE (Slow startup and slow ending, hard to detect)
-4 - SNIPER (Fast start up, slow ending, percise clicking with little movement)
-6 - SPRAY (Fast startup, fast ending, clicking is very spread out, with a lot of movement)
-7 - NEEDLE (Slow startup, slow ending, clicking is very percise)
+==++++++This variable changes the way you can activate and deactivate the autoclicking.++++++==
+
+++++++"TOGGLE" is set to "true"++++++
+-One-click of your hotkey will start the auto-clicking and one-click will end the auto-clicking. This is good for games where
+-you have to get up and leave. 
+
+++++++"TOGGLE" is set to "false"++++++
+-Holding down your hotkey will start your auto-clicking, but on release, it will rest. This is good for FPS games or most PVP
 
 +========================================================================================================+
 
 */
 
+TOGGLE := false ;change to "TOGGLE := false" or "TOGGLE := true"
 
+/*
 
-TOGGLE := true 
++========================================================================================================+
 
-CLICK = XButton2
+                                            +=~ CPS ~=+
 
-START = r
+==++++++This variable changes the maxiumum CPS you will experiance after activiating++++++==
 
-STOP = s
+++++++How to pcik++++++
+-Before selecting your cps please research your game's/server's maximum permitted cps to avoid a ban
+-also, take note if your cps is set too high, some computers may not be able to handle too high cps and bottle
+-neck
+
++========================================================================================================+
+
+*/
 
 CPS = 20.0
 
-PRESETS := [[[CPS, 0.9, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[200, 40]]]
+/*
 
++========================================================================================================+
+
+                                            +=~ CLICK ~=+
+
+==++++++This variable changes the hotkey that is used to start 
+clicking++++++==
+++++++How to pcik++++++
+-Remeber to pick a valid hotkey name out of the hotkey chart located on the bottom
+
+
++========================================================================================================+
+
+*/
+
+CLICK = XButton2
+
+/*
+
++========================================================================================================+
+
+                                            +=~ START ~=+
+
+==++++++This variable changes how you start the script++++++==
+
+++++++How to pcik++++++
+-Remember to pick a valid hotkey name out of the hotkey chart located on the bottom
+
+
++========================================================================================================+
+
+*/
+
+START = r
+
+/*
+
++========================================================================================================+
+
+                                            +=~ STOP ~=+
+
+==++++++This variable changes how you stop/close the script++++++==
+
+++++++How to pick++++++
+-Remember to pick a valid hotkey name out of the hotkey chart located on the bottom
+
+
++========================================================================================================+
+
+*/
+
+STOP = s
+
+/*
+
++========================================================================================================+
+
+                                            +=~ CUSTOM PRESETS ~=+
+
+==++++++This option is for advanced users who need full control in order to maximize performance++++++==
+
+++++++How to setup++++++
+-If we look at the code below you may notice it is numbers contained in brackets.
+-we have to change the numbers inside the brackets in a specific order
+-.[[[CPS, 0.9, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[200, 40]]],
+
+-. for example, we can change 0.9 to 1 and you would have to paste in
+
+-            v
+- .[[[CPS, 0.9, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[200, 40]]],
+
+-.           v
+- .[[[CPS, 1, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[200, 40]]],
+
+-now lets go over which each number means in order
+-If you would like a visual represitation i created please visit - https://www.desmos.com/calculator/tufiu5npsi
+-here are the variables that are used (in order)
+
+-++++++m, c, a, s, d, r, oy, ox, mr, sd++++++
+
++++===============================CPS FUNCTION=================================++
+
+This set of variables change the nature the cps increases and decreases
+
++++============================================================================++
+
+-m == Max CPS reached within script.
+      CPS is clicks per second. for example, if you had 2 CPS the 
+      script would click every 1000/2 milliseconds or 500 milliseconds
+        
+-c == Attack path affects the method at which the CPS increases.
+      This follows a square root function so you can change the rate at which the CPS increases within the Attack magnitude. for 
+      example if you wanted the script to start clicking slow but
+      then suddenly start clicking faster you would make c higher
+
+-a == Attack magnitude affects the rate at which CPS increases.
+      A low a value simulates someone who would reach max cps very
+      quick
+
+-s == Sustain affects how long the max cps remains constant.
+
+-d == Decay affects the "fatigue rate" or how fast the output decreases.
+      the script uses an exponential decay function so d is the percent
+      lost each millisecond
+
+-r == Random variation. Affects the margin at which variables can be random
+       for example, if r=3 and the cps is 20 a random variable between 17 and 
+      23 will be selected.
+      
+-oy == Offset y, this changes how much the entire script is raised on the y-axis
+       This is used if you don't want to start at 0 cps, when t = 0, keep in mind
+       you will have to add oy to Max CPS (m)
+       
+-ox == Offset x, this changes how much the entire script is offset on the x-axis or (t)
+       This is used if you want CPS to remain at 0 for a longer period.
+       
++++========================Radial Distrabution Function========================++   
+
+These variables change the nature of how the clicks are radially distributed
+
++++============================================================================++
+-mr == Max Radius, this is the maximum distance in pixles your mouse can land
+
+
+-sd == Standard Deviation, how much the click coordinates are spread out from the origin to the 
+       Max Radius (mr)
+
++========================================================================================================+
+
+*/
+
+PRESETS := [[[CPS, 0.9, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[10, 2]]]
+    
 /*
 +========================================================================================================+
 +========================================================================================================+
 +========================================================================================================+
-										+=~ LIST OF KEY NAMES ~=+
+                                        +=~ LIST OF KEY NAMES ~=+
 +========================================================================================================+
 +========================================================================================================+
 +========================================================================================================+
-										
-										
+                                        
+                                        
++========================================================================================================+
+When Selecting a hotkey please use the key names that appear first. for example "LButton 	Left mouse button" 
+LButton would be used as a hotkey name for the Left mouse button
++========================================================================================================+
 
-When Selecting a hotkey please use the key names in the "{}"
++========================================================================================================+
+										+++++++++MOUSE+++++++++
++========================================================================================================+
++========================================================================================================+
+General Buttons
++========================================================================================================+
+LButton 	Left mouse button
+RButton 	Right mouse button
+MButton 	Middle or wheel mouse button
++========================================================================================================+
+Advanced Buttons
++========================================================================================================+
+XButton1 	4th mouse button. Typically performs the same function as Browser_Back.
+XButton2 	5th mouse button. Typically performs the same function as Browser_Forward.
++========================================================================================================+
+Wheel
++========================================================================================================+
+WheelDown 	Turn the wheel downward (toward you).
+WheelUp 	Turn the wheel upward (away from you).
+WheelLeft
+WheelRight 	
 
-{F1} - {F24} Function keys. For example: {F12} is the F12 key. 
-{!} ! 
-{#} # 
-{+} + 
-{^} ^ 
-{{} { 
-{}} } 
-{Enter} ENTER key on the main keyboard 
-{Escape} or {Esc} ESCAPE 
-{Space} SPACE (this is only needed for spaces that appear either at the beginning or the end of the string to be sent -- ones in the middle can be literal spaces) 
-{Tab} TAB 
-{Backspace} or {BS} Backspace 
-{Delete} or {Del} Delete 
-{Insert} or {Ins} Insert 
-{Up} Up-arrow key on main keyboard 
-{Down} Down-arrow down key on main keyboard 
-{Left} Left-arrow key on main keyboard 
-{Right} Right-arrow key on main keyboard 
-{Home} Home key on main keyboard 
-{End} End key on main keyboard 
-{PgUp} Page-up key on main keyboard 
-{PgDn} Page-down key on main keyboard 
+[v1.0.48+]: Scroll to the left or right.
 
-{CapsLock} CapsLock (using SetCapsLockState is more reliable on NT/2k/XP). Sending {CapsLock} might require SetStoreCapslockMode Off beforehand. 
-{ScrollLock} ScrollLock (see also: SetScrollLockState) 
-{NumLock} NumLock (see also: SetNumLockState) 
+Requires Windows Vista or later. These can be used as hotkeys with some (but not all) mice which have a second wheel or support tilting the wheel to either side. In some cases, software bundled with the mouse must instead be used to control this feature. Regardless of the particular mouse, Send and Click can be used to scroll horizontally in programs which support it.
++========================================================================================================+
+									+++++++++Keyboard+++++++++
++========================================================================================================+
+Note: The names of the letter and number keys are the same as that single letter or digit. For example: b is the B key and 5 is the 5 key.
 
-{Control} or {Ctrl} CONTROL (technical info: sends the neutral virtual key but the left scan code) 
-{LControl} or {LCtrl} Left CONTROL key (technical info: same as CONTROL for Win9x, but on NT/2k/XP it sends the left virtual key rather than the neutral one) 
-{RControl} or {RCtrl} Right CONTROL key 
-{Control Down} or {Ctrl Down} Holds the CONTROL key down until {Ctrl Up} is sent. XP/2000/NT: To hold down the left or right key instead, use {RCtrl Down} and {RCtrl Up}. 
+Although any single character can be used as a key name, its meaning (scan code or virtual keycode) depends on the current keyboard layout. Additionally, some special characters may need to be escaped or enclosed in braces, depending on the context. [v1.1.27+]: The letters a-z or A-Z can be used to refer to the corresponding virtual keycodes (usually vk41-vk5A) even if they are not included in the current keyboard layout.
++========================================================================================================+
+General Keys
++========================================================================================================+
+CapsLock 	CapsLock (caps lock key)
+Space 	Space (space bar)
+Tab 	Tab (tabulator key)
+Enter 	Enter
+Return 	Deprecated: Use the synonym Enter instead to reduce ambiguity.
+Escape (or Esc) 	Esc
+Backspace (or BS) 	Backspace
++========================================================================================================+
+Cursor Control Keys
++========================================================================================================+
+ScrollLock 	ScrollLock (scroll lock key). While the Ctrl key is held down, the ScrollLock key produces the key code of CtrlBreak, but can be differentiated from Pause by scan code.
+Delete (or Del) 	Delete
+Insert (or Ins) 	Insert
+Home 	Home
+End 	End
+PgUp 	PageUp (page up key)
+PgDn 	PageDown (page down key)
+Up 	? (up arrow key)
+Down 	? (down arrow key)
+Left 	? (left arrow key)
+Right 	? (right arrow key)
++========================================================================================================+
+Numpad Keys
++========================================================================================================+
+Due to system behavior, the following keys seperated by a slash are identified differently depending on whether NumLock is ON or OFF. If NumLock is OFF but Shift is pressed, the system temporarily releases Shift and acts as though NumLock is ON.
+Numpad0 / NumpadIns	0 / Insert
+Numpad1 / NumpadEnd	1 / End
+Numpad2 / NumpadDown	2 / ?
+Numpad3 / NumpadPgDn	3 / PageDown
+Numpad4 / NumpadLeft	4 / ?
+Numpad5 / NumpadClear	5 / typically does nothing
+Numpad6 / NumpadRight	6 / ?
+Numpad7 / NumpadHome	7 / Home
+Numpad8 / NumpadUp	8 / ?
+Numpad9 / NumpadPgUp	9 / PageUp
+NumpadDot / NumpadDel	. / Delete
+NumLock 	NumLock (number lock key). While the Ctrl key is held down, the NumLock key produces the key code of Pause, so use ^Pause in hotkeys instead of ^NumLock.
+NumpadDiv 	/ (division)
+NumpadMult 	* (multiplication)
+NumpadAdd 	+ (addition)
+NumpadSub 	- (subtraction)
+NumpadEnter 	Enter
++========================================================================================================+
+Function Keys
++========================================================================================================+
+F1 - F24 	The 12 or more function keys at the top of most keyboards.
++========================================================================================================+
+Modifier Keys
++========================================================================================================+
+LWin 	Left Win. Corresponds to the <# hotkey prefix.
+RWin 	
 
-{Alt} ALT (technical info: sends the neutral virtual key but the left scan code) 
-{LAlt} Left ALT key (technical info: same as ALT for Win9x, but on NT/2k/XP it sends the left virtual key rather than the neutral one) 
-{RAlt} Right ALT key (or AltGr, depending on keyboard layout) 
-{Alt Down} Holds the ALT key down until {Alt Up} is sent. XP/2000/NT: To hold down the left or right key instead, use {RAlt Down} and {RAlt Up}. 
+Right Win. Corresponds to the ># hotkey prefix.
 
-{Shift} SHIFT (technical info: sends the neutral virtual key but the left scan code) 
-{LShift} Left SHIFT key (technical info: same as SHIFT for Win9x, but on NT/2k/XP it sends the left virtual key rather than the neutral one) 
-{RShift} Right SHIFT key 
-{Shift Down} Holds the SHIFT key down until {Shift Up} is sent. XP/2000/NT: To hold down the left or right key instead, use {RShift Down} and {RShift Up}. 
+Note: Unlike Control/Alt/Shift, there is no generic/neutral "Win" key because the OS does not support it. However, hotkeys with the # modifier can be triggered by either Win key.
+Control (or Ctrl) 	Control. As a hotkey (Control::) it fires upon release unless it has the tilde prefix. Corresponds to the ^ hotkey prefix.
+Alt 	Alt. As a hotkey (Alt::) it fires upon release unless it has the tilde prefix. Corresponds to the ! hotkey prefix.
+Shift 	Shift. As a hotkey (Shift::) it fires upon release unless it has the tilde prefix. Corresponds to the + hotkey prefix.
+LControl (or LCtrl) 	Left Control. Corresponds to the <^ hotkey prefix.
+RControl (or RCtrl) 	Right Control. Corresponds to the >^ hotkey prefix.
+LShift 	Left Shift. Corresponds to the <+ hotkey prefix.
+RShift 	Right Shift. Corresponds to the >+ hotkey prefix.
+LAlt 	Left Alt. Corresponds to the <! hotkey prefix.
+RAlt 	
 
-{LWin} Left Windows key 
-{RWin} Right Windows key 
-{LWin Down} Holds the left Windows key down until {LWin Up} is sent 
-{RWin Down} Holds the right Windows key down until {RWin Up} is sent 
+Right Alt. Corresponds to the >! hotkey prefix.
 
-{AppsKey} Windows App key (invokes the right-click or context menu) 
-{Sleep} Computer SLEEP key. 
-{ASC nnnnn} Sends an ALT+nnnnn keypad combination, which can be used to generate special characters that don't exist on the keyboard. To generate ASCII characters, specify a number between 1 and 255. To generate ANSI characters (standard in most languages), specify a number between 128 and 255, but precede it with a leading zero, e.g. {Asc 0133}.
+Note: If your keyboard layout has AltGr instead of RAlt, you can probably use it as a hotkey prefix via <^>! as described here. In addition, LControl & RAlt:: would make AltGr itself into a hotkey.
 
-To generate Unicode characters, specify a number between 256 and 65535 (without a leading zero). However, this is not supported by all applications. Therefore, for greater compatibility and easier sending of long Unicode strings, use "Transform Unicode".
++========================================================================================================+
+Multimedia Keys
++========================================================================================================+
 
-{vkXX}
-{scYYY}
-{vkXXscYYY}
-Sends a keystroke that has virtual key XX and scan code YYY. For example: Send {vkFFsc159}. If the sc or vk portion is omitted, the most appropriate value is sent in its place.
+The function assigned to each of the keys listed below can be overridden by modifying the Windows registry. This table shows the default function of each key on most versions of Windows.
+Browser_Back 	Back
+Browser_Forward 	Forward
+Browser_Refresh 	Refresh
+Browser_Stop 	Stop
+Browser_Search 	Search
+Browser_Favorites 	Favorites
+Browser_Home 	Homepage
+Volume_Mute 	Mute the volume
+Volume_Down 	Lower the volume
+Volume_Up 	Increase the volume
+Media_Next 	Next Track
+Media_Prev 	Previous Track
+Media_Stop 	Stop
+Media_Play_Pause 	Play/Pause
+Launch_Mail 	Launch default e-mail program
+Launch_Media 	Launch default media player
+Launch_App1 	Launch My Computer
+Launch_App2 	Launch Calculator
++========================================================================================================+
+Other Keys
++========================================================================================================+
+AppsKey 	Menu. This is the key that invokes the right-click context menu.
+PrintScreen 	PrintScreen
+CtrlBreak 	Ctrl+Pause or Ctrl+ScrollLock
+Pause 	Pause or Ctrl+NumLock. While the Ctrl key is held down, the Pause key produces the key code of CtrlBreak and NumLock produces Pause, so use ^CtrlBreak in hotkeys instead of ^Pause.
+Break 	Deprecated: Use the synonym Pause instead.
+Help 	Help. This probably doesn't exist on most keyboards. It's usually not the same as F1.
+Sleep 	Sleep. Note that the sleep key on some keyboards might not work with this.
+SCnnn 	Specify for nnn the scan code of a key. Recognizes unusual keys not mentioned above. See Special Keys for details.
+VKnn 	
 
-The values for XX and YYY are hexadecimal and can usually be determined from the main window's View->Key history menu item. See also: Special Keys
+Specify for nn the hexadecimal virtual key code of a key. This rarely-used method also prevents certain types of hotkeys from requiring the keyboard hook. For example, the following hotkey does not use the keyboard hook, but as a side-effect it is triggered by pressing either Home or NumpadHome:
 
+^VK24::MsgBox You pressed Home or NumpadHome while holding down Control.
 
-{Numpad0} - {Numpad9} Numpad digit keys (as seen when Numlock is ON). For example: {Numpad5} is the digit 5. 
-{NumpadDot} Numpad Period (as seen when Numlock is ON). 
-{NumpadEnter} Enter key on keypad 
-{NumpadMult} Numpad Multiply 
-{NumpadDiv} Numpad Divide 
-{NumpadAdd} Numpad Add 
-{NumpadSub} Numpad Subtract 
+Known limitation: VK hotkeys that are forced to use the keyboard hook, such as *VK24 or ~VK24, will fire for only one of the keys, not both (e.g. NumpadHome but not Home). For more information about the VKnn method, see Special Keys.
 
-{NumpadDel} Delete key on keypad (this key and the following Numpad keys are used when Numlock is OFF) 
-{NumpadIns} Insert key on keypad 
-{NumpadClear} Clear key on keypad (usually the '5' key when Numlock is OFF). 
-{NumpadUp} Up-arrow key on keypad 
-{NumpadDown} Down-arrow key on keypad 
-{NumpadLeft} Left-arrow key on keypad 
-{NumpadRight} Right-arrow key on keypad 
-{NumpadHome} Home key on keypad 
-{NumpadEnd} End key on keypad 
-{NumpadPgUp} Page-up key on keypad 
-{NumpadPgDn} Page-down key on keypad 
+Warning: Only Send, GetKeyName(), GetKeyVK(), GetKeySC() and #MenuMaskKey support combining VKnn and SCnnn. [v1.1.27+]: The presence of an invalid suffix prevents VKnn from being recognized. For example, vk1Bsc001:: raises an error in v1.1.27+, but sc001 was ignored (had no effect) in previous versions.
 
-{Browser_Back} 2000/XP/Vista+: Select the browser "back" button 
-{Browser_Forward} 2000/XP/Vista+: Select the browser "forward" button 
-{Browser_Refresh} 2000/XP/Vista+: Select the browser "refresh" button 
-{Browser_Stop} 2000/XP/Vista+: Select the browser "stop" button 
-{Browser_Search} 2000/XP/Vista+: Select the browser "search" button 
-{Browser_Favorites} 2000/XP/Vista+: Select the browser "favorites" button 
-{Browser_Home} 2000/XP/Vista+: Launch the browser and go to the home page 
-{Volume_Mute} 2000/XP/Vista+: Mute/unmute the master volume. Usually equivalent to SoundSet, +1, , mute 
-{Volume_Down} 2000/XP/Vista+: Reduce the master volume. Usually equivalent to SoundSet -5 
-{Volume_Up} 2000/XP/Vista+: Increase the master volume. Usually equivalent to SoundSet +5 
-{Media_Next} 2000/XP/Vista+: Select next track in media player 
-{Media_Prev} 2000/XP/Vista+: Select previous track in media player 
-{Media_Stop} 2000/XP/Vista+: Stop media player 
-{Media_Play_Pause} 2000/XP/Vista+: Play/pause media player 
-{Launch_Mail} 2000/XP/Vista+: Launch the email application 
-{Launch_Media} 2000/XP/Vista+: Launch media player 
-{Launch_App1} 2000/XP/Vista+: Launch user app1 
-{Launch_App2} 2000/XP/Vista+: Launch user app2 
++========================================================================================================+
+									++++++++++Joystick+++++++++
++========================================================================================================+
 
-{PrintScreen} Print Screen 
-{CtrlBreak} Ctrl+break 
-{Pause} Pause 
+Joy1 through Joy32: The buttons of the joystick. To help determine the button numbers for your joystick, use this test script. Note that hotkey prefix symbols such as ^ (control) and + (shift) are not supported (though GetKeyState can be used as a substitute). Also note that the pressing of joystick buttons always "passes through" to the active window if that window is designed to detect the pressing of joystick buttons.
+
+Although the following Joystick control names cannot be used as hotkeys, they can be used with GetKeyState:
+JoyX, JoyY, and JoyZ: The X (horizontal), Y (vertical), and Z (altitude/depth) axes of the joystick.
+JoyR: The rudder or 4th axis of the joystick.
+JoyU and JoyV: The 5th and 6th axes of the joystick.
+JoyPOV: The point-of-view (hat) control.
+JoyName: The name of the joystick or its driver.
+JoyButtons: The number of buttons supported by the joystick (not always accurate).
+JoyAxes: The number of axes supported by the joystick.
+JoyInfo: Provides a string consisting of zero or more of the following letters to indicate the joystick's capabilities: Z (has Z axis), R (has R axis), U (has U axis), V (has V axis), P (has POV control), D (the POV control has a limited number of discrete/distinct settings), C (the POV control is continuous/fine). Example string: ZRUVPD
+
+Multiple Joysticks: If the computer has more than one joystick and you want to use one beyond the first, include the joystick number (max 16) in front of the control name. For example, 2joy1 is the second joystick's first button.
+
+Note: If you have trouble getting a script to recognize your joystick, one person reported needing to specify a joystick number other than 1 even though only a single joystick was present. It is unclear how this situation arises or whether it is normal, but experimenting with the joystick number in the joystick test script can help determine if this applies to your system.
 
 +========================================================================================================+
 +========================================================================================================+
 +========================================================================================================+
 */
+
+
 #SingleInstance, Force
 #NoEnv
 #MaxHotkeysPerInterval 99000000
@@ -200,71 +423,71 @@ Hotkey, %STOP%, STOP
 return
 
 CPS(m, c, a, s, d, r, oy, ox, t) {
-	
-	; outputs clicks per second from peicewise function
-	
-	i := m/Sqrt(a**c)
-	
-	if((t-ox)>=(a+s)) {
-		
-		cps := (m*(1-d)**((t-ox)-(a+s)))+oy
-		
-	} else if((0<=(t-ox)) && ((t-ox)<=a)) {
-		
-		cps := (i*Sqrt((t-ox)**c))+oy
-		
-	} else {
-		
-		cps := m+oy
-		
-	}
-	
-	Random, cps, (cps-r)*100, (cps+r)*100
-	cps /= 100
-	
-	if (cps < 0) {
-		cps := 0
-	}
-	
-	return cps 	
-	
+    
+    ; outputs clicks per second from peicewise function
+    
+    i := m/Sqrt(a**c)
+    
+    if((t-ox)>=(a+s)) {
+        
+        cps := (m*(1-d)**((t-ox)-(a+s)))+oy
+        
+    } else if((0<=(t-ox)) && ((t-ox)<=a)) {
+        
+        cps := (i*Sqrt((t-ox)**c))+oy
+        
+    } else {
+        
+        cps := m+oy
+        
+    }
+    
+    Random, cps, (cps-r)*100, (cps+r)*100
+    cps /= 100
+    
+    if (cps < 0) {
+        cps := 0
+    }
+    
+    return cps     
+    
 }
 
 Movement(init_ox, init_oy, new_x, new_y) {
-	
-	x := 0+(-1*init_ox)+new_x 
-	y := 0+(-1*init_oy)+new_y
-	
-	return [x, y]
-	
+    
+    x := 0+(-1*init_ox)+new_x 
+    y := 0+(-1*init_oy)+new_y
+    
+    return [x, y]
+    
 }
 
 Muller(m,s) {
-	
+    
    ; Normally distributed random numbers of mean = m, std.dev = s by Box-Muller method
    
    Static i, Y
    
    if (i := !i) { ; every other call
-	
+    
       Random U, 0, 1.0
       Random V, 0, 6.2831853071795862
-	  
+      
       U := sqrt(-2*ln(U))*s
       Y := m + U*sin(V)
       return m + U*cos(V)
-	  
+      
    }
    
    return Y
 }
 
 Rad(deg){
-	return deg*(3.14159265359/180)	
+    return deg*(3.14159265359/180)    
 }
 
 RadialPos(mr, standardDeviation) {
-	
+    
    ; selects random point from radial distrabution function
    
    Random, theta, 0, 360
@@ -274,40 +497,40 @@ RadialPos(mr, standardDeviation) {
    
    while(true){
       m := Muller(mr, standardDeviation)
-	  if(m >= mr and m <= (mr*2)){
-		  break
-	  }
+      if(m >= mr and m <= (mr*2)){
+          break
+      }
    }
    
    m := m-mr
    
    if (theta >= 0 && theta < 90) {
-	   
-	refa := Rad(theta)
-	
+       
+    refa := Rad(theta)
+    
    } else if (theta >= 90 && theta < 180) {
-	   
-	refa := Rad(180-theta)
-	dirx := -1
-	
+       
+    refa := Rad(180-theta)
+    dirx := -1
+    
    } else if (theta >= 180 && theta < 270) {
-	   
-   	refa := Rad(theta-180)
-	dirx := -1
-	diry := -1
-	
+       
+       refa := Rad(theta-180)
+    dirx := -1
+    diry := -1
+    
    } else  {
-	   
-	refa := Rad(360-theta)
-	diry := -1	
-	
+       
+    refa := Rad(360-theta)
+    diry := -1    
+    
    }
    
    oy := diry*(m*Sin(refa))
    ox := dirx*(Sqrt(((m**2)-(oy**2))))
-	
+    
    return [ox, oy]
-	
+    
 }
 
 START:
@@ -320,74 +543,74 @@ SEQUENCE_STATE := KEY_DOWN_1
 
 loop
 {
-	
-	
-	if(GetKeyState(CLICK, "P")){
-		
-		init_ox := 0
-		init_oy := 0
-		init_t := (a_hour*3600 + a_min*60 + a_sec)*1000 + a_msec
-		active := true
-		
-		
-		while (active)	{   
-		
-			oArr := RadialPos(PRESETS[PRESET][2][1], PRESETS[PRESET][2][2]) 
-			new_ox := oArr[1]
-			new_oy := oArr[2]
-			
-			mArr := Movement(init_ox, init_oy, new_ox, new_oy)
-			
-			new_t := (a_hour*3600 + a_min*60 + a_sec)*1000 + a_msec
-			
-			CPS := CPS(			
-			.	PRESETS[PRESET][1][1], 
-			.	PRESETS[PRESET][1][2], 
-			.	PRESETS[PRESET][1][3], 
-			.	PRESETS[PRESET][1][4], 
-			.	PRESETS[PRESET][1][5], 
-			.	PRESETS[PRESET][1][6], 
-			.	PRESETS[PRESET][1][7], 
-			.	PRESETS[PRESET][1][8], 
-			.	(new_t-init_t)			
-			.	)
-			
-			if (CPS != 0) {
-				Click Left
-				MouseMove, mArr[1], mArr[2], 0, R
-				Sleep, (1000/CPS)
-			}
-			
-			init_ox := new_ox 
-			init_oy := new_oy
-			
-			if((GetKeyState(CLICK, "P") && SEQUENCE_STATE == KEY_UP_1)){
-				SEQUENCE_STATE := KEY_DOWN_2
-			}
-			
-			if(!GetKeyState(CLICK, "P") ){
-				
-				
-				if((TOGGLE && (SEQUENCE_STATE == KEY_DOWN_2)) || (!TOGGLE)){
+    
+    
+    if(GetKeyState(CLICK, "P")){
+        
+        init_ox := 0
+        init_oy := 0
+        init_t := (a_hour*3600 + a_min*60 + a_sec)*1000 + a_msec
+        active := true
+        
+        
+        while (active)    {   
+        
+            oArr := RadialPos(PRESETS[PRESET][2][1], PRESETS[PRESET][2][2]) 
+            new_ox := oArr[1]
+            new_oy := oArr[2]
+            
+            mArr := Movement(init_ox, init_oy, new_ox, new_oy)
+            
+            new_t := (a_hour*3600 + a_min*60 + a_sec)*1000 + a_msec
 
-					oArr := Movement(init_ox, init_oy, 0, 0)
-					MouseMove, oArr[1], oArr[2], 0, R
-					active := false
-					SEQUENCE_STATE := KEY_DOWN_1
-					
-				}  else if(TOGGLE && (SEQUENCE_STATE == KEY_DOWN_1)){
-					
-					SEQUENCE_STATE := KEY_UP_1
-					
-				}
-			
-				
-			}
-				 
-		}
-		
-	}
-	
+            CPS := CPS(            
+            .    PRESETS[PRESET][1][1], 
+            .    PRESETS[PRESET][1][2], 
+            .    PRESETS[PRESET][1][3], 
+            .    PRESETS[PRESET][1][4], 
+            .    PRESETS[PRESET][1][5], 
+            .    PRESETS[PRESET][1][6], 
+            .    PRESETS[PRESET][1][7], 
+            .    PRESETS[PRESET][1][8], 
+            .    (new_t-init_t)            
+            .    )
+            
+            if (CPS != 0) {
+                Click Left
+                MouseMove, mArr[1], mArr[2], 0, R
+                Sleep, (1000/CPS)
+            }
+            
+            init_ox := new_ox 
+            init_oy := new_oy
+            
+            if((GetKeyState(CLICK, "P") && SEQUENCE_STATE == KEY_UP_1)){
+                SEQUENCE_STATE := KEY_DOWN_2
+            }
+            
+            if(!GetKeyState(CLICK, "P") ){
+                
+                
+                if((TOGGLE && (SEQUENCE_STATE == KEY_DOWN_2)) || (!TOGGLE)){
+
+                    oArr := Movement(init_ox, init_oy, 0, 0)
+                    MouseMove, oArr[1], oArr[2], 0, R
+                    active := false
+                    SEQUENCE_STATE := KEY_DOWN_1
+                    
+                }  else if(TOGGLE && (SEQUENCE_STATE == KEY_DOWN_1)){
+                    
+                    SEQUENCE_STATE := KEY_UP_1
+                    
+                }
+            
+                
+            }
+                 
+        }
+        
+    }
+    
 }
 
 STOP: 
