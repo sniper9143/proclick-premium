@@ -30,7 +30,7 @@ Below is a tutorial and how you can change various options on the script
 
 1 - JUMPER (Fast start-up, medium-end, hard to detect)
 2 - CLASSIC (Constant clicking no changes in cps and movement, easily detected)
-3 - TURTLE (Slow startup and slow ending, hard to detect)
+3 - TURTLE (Slow startup and slow ending, hard to detect, clicking spread out, random cps high)
 4 - SNIPER (Fast start-up, slow ending, precise clicking with little movement)
 6 - SPRAY (Fast startup, fast ending, clicking is very spread out, with a lot of movement)
 7 - NEEDLE (Slow startup, slow ending, clicking is very precise)
@@ -40,7 +40,7 @@ Below is a tutorial and how you can change various options on the script
 
 */
 
-PRESET := 1 ; pick "PRESET := 1" through "PRESET := 7"   to change your preset (remember to only change the number)
+PRESET := 2 ; pick "PRESET := 1" through "PRESET := 7"   to change your preset (remember to only change the number)
 
 /*
 
@@ -80,7 +80,7 @@ TOGGLE := false ;change to "TOGGLE := false" or "TOGGLE := true"
 
 */
 
-CPS = 20.0
+CPS := 20.0
 
 /*
 
@@ -147,15 +147,28 @@ STOP = s
 ++++++How to setup++++++
 -If we look at the code below you may notice it is numbers contained in brackets.
 -we have to change the numbers inside the brackets in a specific order
--.[[[CPS, 0.9, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[200, 40]]],
+- PRESETS[1] := [[CPS, 0.9, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[10, 2]],
+
 
 -. for example, we can change 0.9 to 1 and you would have to paste in
 
--            v
-- .[[[CPS, 0.9, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[200, 40]]],
+**number is 0.9
+-                      v
+- PRESETS[1] := [[CPS, 0.9, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[10, 2]]
+**number is 1
+-.           		   v
+- PRESETS[1] := [[CPS, 1, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[10, 2]]
 
--.           v
-- .[[[CPS, 1, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[200, 40]]],
+- we also have to change this number that cooresponds to the preset number
+- ex if we wanted to make preset 8 this number would change to 8
+
+**number is 1
+		 v
+-PRESETS[1] := [[CPS, 1, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[10, 2]]
+
+**we change the number to 8
+		 v
+-PRESETS[8] := [[CPS, 1, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[10, 2]]
 
 -now lets go over which each number means in order
 -If you would like a visual represitation i created please visit - https://www.desmos.com/calculator/tufiu5npsi
@@ -213,9 +226,17 @@ These variables change the nature of how the clicks are radially distributed
 +========================================================================================================+
 
 */
+PRESETS := Object()
 
-PRESETS := [[[CPS, 0.9, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[10, 2]]]
-    
+PRESETS[1] := [[CPS, 0.9, 200.0, 1000.0, 0.00009, 1.0, 0.0, 0.0],[10, 2]]
+PRESETS[2] := [[CPS, 0, 200.0, 1000.0, 0, 0.0, 0.0, 0.0],[0, 0]]
+PRESETS[3] := [[CPS, 3, 3000, 3000.0, 0.0000091, 5.0, 0.0, 0.0],[10, 4]]
+
+PRESETS[4] := [[CPS, 0.9, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[10, 2]]
+PRESETS[5] := [[CPS, 0.9, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[10, 2]]
+PRESETS[6] := [[CPS, 0.9, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[10, 2]]
+PRESETS[7] := [[CPS, 0.9, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[10, 2]]
+
 /*
 +========================================================================================================+
 +========================================================================================================+
@@ -403,26 +424,11 @@ Note: If you have trouble getting a script to recognize your joystick, one perso
 +========================================================================================================+
 */
 
-
-#SingleInstance, Force
-#NoEnv
-#MaxHotkeysPerInterval 99000000
-#HotkeyInterval 99000000
-#KeyHistory 0
-ListLines Off
-Process, Priority, , A
-SetBatchLines, -1
-SetKeyDelay, -1, -1
-SetMouseDelay, -1
-SetDefaultMouseSpeed, 0
-SetWinDelay, -1
-SetControlDelay, -1
-SendMode Input
 Hotkey, %START%, START
 Hotkey, %STOP%, STOP
 return
 
-CPS(m, c, a, s, d, r, oy, ox, t) {
+_CPS(m, c, a, s, d, r, oy, ox, t) {
     
     ; outputs clicks per second from peicewise function
     
@@ -563,22 +569,13 @@ loop
             
             new_t := (a_hour*3600 + a_min*60 + a_sec)*1000 + a_msec
 
-            CPS := CPS(            
-            .    PRESETS[PRESET][1][1], 
-            .    PRESETS[PRESET][1][2], 
-            .    PRESETS[PRESET][1][3], 
-            .    PRESETS[PRESET][1][4], 
-            .    PRESETS[PRESET][1][5], 
-            .    PRESETS[PRESET][1][6], 
-            .    PRESETS[PRESET][1][7], 
-            .    PRESETS[PRESET][1][8], 
-            .    (new_t-init_t)            
-            .    )
+            _CPS := _CPS(PRESETS[PRESET][1][1],PRESETS[PRESET][1][2],PRESETS[PRESET][1][3],PRESETS[PRESET][1][4],PRESETS[PRESET][1][5],PRESETS[PRESET][1][6],PRESETS[PRESET][1][7],PRESETS[PRESET][1][8],(new_t-init_t))
             
-            if (CPS != 0) {
+            if (_CPS != 0) {
+				
                 Click Left
                 MouseMove, mArr[1], mArr[2], 0, R
-                Sleep, (1000/CPS)
+                Sleep, (1000/_CPS)
             }
             
             init_ox := new_ox 
