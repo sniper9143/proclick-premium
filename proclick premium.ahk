@@ -40,7 +40,7 @@ Below is a tutorial and how you can change various options on the script
 
 */
 
-PRESET := 2 ; pick "PRESET := 1" through "PRESET := 7"   to change your preset (remember to only change the number)
+PRESET := 1 ; pigck "PRESET := 1" through "PRESET := 7"   to change your preset (remember to only change the number)
 
 /*
 
@@ -228,9 +228,10 @@ These variables change the nature of how the clicks are radially distributed
 */
 PRESETS := Object()
 
-PRESETS[1] := [[CPS, 0.9, 200.0, 1000.0, 0.00009, 1.0, 0.0, 0.0],[10, 2]]
+PRESETS[1] := [[CPS, 0.7, 50.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[10, 2]]
 PRESETS[2] := [[CPS, 0, 200.0, 1000.0, 0, 0.0, 0.0, 0.0],[0, 0]]
 PRESETS[3] := [[CPS, 3, 3000, 3000.0, 0.0000091, 5.0, 0.0, 0.0],[10, 4]]
+
 PRESETS[4] := [[CPS, 0.9, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[10, 2]]
 PRESETS[5] := [[CPS, 0.9, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[10, 2]]
 PRESETS[6] := [[CPS, 0.9, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[10, 2]]
@@ -416,7 +417,7 @@ JoyInfo: Provides a string consisting of zero or more of the following letters t
 
 Multiple Joysticks: If the computer has more than one joystick and you want to use one beyond the first, include the joystick number (max 16) in front of the control name. For example, 2joy1 is the second joystick's first button.
 
-Note: If you have trouble getting a script to recognize your joystick, one person reported needing to specify a joystick number other than 1 even though only a single joystick was present. It is unclear how this situation arises or whether it is normal, but experimenting with the joystick number in the joystick test script can help determine if this applies to your system.
+Note: If you have trouble getting a script to recognize your joystick, one person reported nggeeding to specify a joystick number other than 1 even though only a single joystick was present. It is unclear how this situation arises or whether it is normal, but experimenting with the joystick number in the joystick test script can help determine if this applies to your system.
 
 +========================================================================================================+
 +========================================================================================================+
@@ -435,28 +436,31 @@ _CPS(m, c, a, s, d, r, oy, ox, t) {
     
     if((t-ox)>=(a+s)) {
         
-        cps := (m*(1-d)**((t-ox)-(a+s)))+oy
+        _cps := (m*(1-d)**((t-ox)-(a+s)))+oy
         
     } else if((0<=(t-ox)) && ((t-ox)<=a)) {
         
-        cps := (i*Sqrt((t-ox)**c))+oy
+        _cps := (i*Sqrt((t-ox)**c))+oy
         
     } else {
         
-        cps := m+oy
+        _cps := m+oy
         
     }
     
-    Random, cps, (cps-r)*100, (cps+r)*100
-    cps /= 100
+    Random, _cps, (_cps-r)*100, (_cps+r)*100
+    _cps /= 100
     
-    if (cps < 0) {
-        cps := 0
+    if (_cps < 0) {
+        _cps := 0
     }
     
-    return cps     
+    return _cps     
     
 }
+
+
+
 
 Movement(init_ox, init_oy, new_x, new_y) {
     
