@@ -3,14 +3,14 @@
 +========================================================================================================+
 +========================================================================================================+
 
- ____  ____   ___     __  _      ____   __  __  _      ____  ____     ___  ___ ___  ____  __ __  ___ ___ 
+ ____  ____   ___     __  _      ____   __  __  _      ____  ____     ___  ___ ___  ____  __ __  ___ ___
 |    \|    \ /   \   /  ]| |    |    | /  ]|  |/ ]    |    \|    \   /  _]|   |   ||    ||  |  ||   |   |
 |  o  )  D  )     | /  / | |     |  | /  / |  ' /     |  o  )  D  ) /  [_ | _   _ | |  | |  |  || _   _ |
 |   _/|    /|  O  |/  /  | |___  |  |/  /  |    \     |   _/|    / |    _]|  \_/  | |  | |  |  ||  \_/  |
 |  |  |    \|     /   \_ |     | |  /   \_ |     \    |  |  |    \ |   [_ |   |   | |  | |  :  ||   |   |
 |  |  |  .  \     \     ||     | |  \     ||  .  |    |  |  |  .  \|     ||   |   | |  | |     ||   |   |
 |__|  |__|\_|\___/ \____||_____||____\____||__|\_|    |__|  |__|\_||_____||___|___||____| \__,_||___|___|
-                                                                                                         
+
                                         +=~ BY SNIPER9143 ~=+
 
 +========================================================================================================+
@@ -18,8 +18,8 @@
 +========================================================================================================+
 
              !+ ProClick Premium, The quieter you become, the more you can hear +1
-             
-             
+
+
            ***The most Undetectable, and powerful AutoHotkey Script to exist on the internet***
 
 +========================================================================================================+
@@ -32,15 +32,15 @@ Below is a tutorial and how you can change various options on the script
 2 - CLASSIC (Constant clicking no changes in cps and movement, easily detected)
 3 - TURTLE (Slow startup and slow ending, hard to detect, clicking spread out, random cps high)
 4 - SNIPER (Fast start-up, slow ending, precise clicking with little movement)
-6 - SPRAY (Fast startup, fast ending, clicking is very spread out, with a lot of movement)
-7 - NEEDLE (Slow startup, slow ending, clicking is very precise)
-8 + CUSTOM (You can create custom presets by adding your variables)
+5 - SPRAY (Fast startup, fast ending, clicking is very spread out, with a lot of movement)
+6 - NEEDLE (Slow startup, slow ending, clicking is very precise)
+7 + CUSTOM (You can create custom presets by adding your variables)
 
 +========================================================================================================+
 
 */
 
-PRESET := 1 ; pigck "PRESET := 1" through "PRESET := 7"   to change your preset (remember to only change the number)
+PRESET := 2 ; pick "PRESET := 1" through "PRESET := 6"   to change your preset (remember to only change the number)
 
 /*
 
@@ -52,7 +52,7 @@ PRESET := 1 ; pigck "PRESET := 1" through "PRESET := 7"   to change your preset 
 
 ++++++"TOGGLE" is set to "true"++++++
 -One-click of your hotkey will start the auto-clicking and one-click will end the auto-clicking. This is good for games where
--you have to get up and leave. 
+-you have to get up and leave.
 
 ++++++"TOGGLE" is set to "false"++++++
 -Holding down your hotkey will start your auto-clicking, but on release, it will rest. This is good for FPS games or most PVP
@@ -80,7 +80,7 @@ TOGGLE := false ;change to "TOGGLE := false" or "TOGGLE := true"
 
 */
 
-CPS := 20.0
+CPS := 130
 
 /*
 
@@ -88,7 +88,7 @@ CPS := 20.0
 
                                             +=~ CLICK ~=+
 
-==++++++This variable changes the hotkey that is used to start 
+==++++++This variable changes the hotkey that is used to start
 clicking++++++==
 ++++++How to pcik++++++
 -Remeber to pick a valid hotkey name out of the hotkey chart located on the bottom
@@ -116,7 +116,7 @@ CLICK = XButton2
 
 */
 
-START = r
+START = y
 
 /*
 
@@ -134,7 +134,7 @@ START = r
 
 */
 
-STOP = s
+STOP = j
 
 /*
 
@@ -183,11 +183,11 @@ This set of variables change the nature the cps increases and decreases
 +++============================================================================++
 
 -m == Max CPS reached within script.
-      CPS is clicks per second. for example, if you had 2 CPS the 
+      CPS is clicks per second. for example, if you had 2 CPS the
       script would click every 1000/2 milliseconds or 500 milliseconds
-        
+
 -c == Attack path affects the method at which the CPS increases.
-      This follows a square root function so you can change the rate at which the CPS increases within the Attack magnitude. for 
+      This follows a square root function so you can change the rate at which the CPS increases within the Attack magnitude. for
       example if you wanted the script to start clicking slow but
       then suddenly start clicking faster you would make c higher
 
@@ -202,17 +202,17 @@ This set of variables change the nature the cps increases and decreases
       lost each millisecond
 
 -r == Random variation. Affects the margin at which variables can be random
-       for example, if r=3 and the cps is 20 a random variable between 17 and 
+       for example, if r=3 and the cps is 20 a random variable between 17 and
       23 will be selected.
-      
+
 -oy == Offset y, this changes how much the entire script is raised on the y-axis
        This is used if you don't want to start at 0 cps, when t = 0, keep in mind
        you will have to add oy to Max CPS (m)
-       
+
 -ox == Offset x, this changes how much the entire script is offset on the x-axis or (t)
        This is used if you want CPS to remain at 0 for a longer period.
-       
-+++========================Radial Distrabution Function========================++   
+
++++========================Radial Distrabution Function========================++
 
 These variables change the nature of how the clicks are radially distributed
 
@@ -220,7 +220,7 @@ These variables change the nature of how the clicks are radially distributed
 -mr == Max Radius, this is the maximum distance in pixles your mouse can land
 
 
--sd == Standard Deviation, how much the click coordinates are spread out from the origin to the 
+-sd == Standard Deviation, how much the click coordinates are spread out from the origin to the
        Max Radius (mr)
 
 +========================================================================================================+
@@ -228,9 +228,13 @@ These variables change the nature of how the clicks are radially distributed
 */
 PRESETS := Object()
 
-PRESETS[1] := [[CPS, 0.7, 50.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[10, 2]]
-PRESETS[2] := [[CPS, 0, 200.0, 1000.0, 0, 0.0, 0.0, 0.0],[0, 0]]
-PRESETS[3] := [[CPS, 3, 3000, 3000.0, 0.0000091, 5.0, 0.0, 0.0],[10, 4]]
+PRESETS[1] := [[CPS, 0.7, 200.0, 1000.0, 0.00009, 0.0, 0.0, 0.0],[10, 2]]
+PRESETS[2] := [[CPS, 0, 200.0, 1000.0, 0, 0.0, 0.0, 0.0],[10, 2]]
+PRESETS[3] := [[CPS, 3, 1000, 3000.0, 0.0000091, 5.0, 0.0, 0.0],[10, 4]]
+PRESETS[4] := [[CPS, 0.9, 100.0, 2000.0, 0.0000091, 0.1, 0.0, 0.0],[3, 1]]
+PRESETS[5] := [[CPS, 0.6, 70.0, 115.0, 0.0004, 0.245, 0.0, 0.0],[50, 10]]
+PRESETS[6] := [[CPS, 3, 1000, 3000.0, 0.0000091, 5.0, 0.0, 0.0],[3, 1]]
+
 
 /*
 +========================================================================================================+
@@ -240,10 +244,10 @@ PRESETS[3] := [[CPS, 3, 3000, 3000.0, 0.0000091, 5.0, 0.0, 0.0],[10, 4]]
 +========================================================================================================+
 +========================================================================================================+
 +========================================================================================================+
-                                        
-                                        
+
+
 +========================================================================================================+
-When Selecting a hotkey please use the key names that appear first. for example "LButton 	Left mouse button" 
+When Selecting a hotkey please use the key names that appear first. for example "LButton 	Left mouse button"
 LButton would be used as a hotkey name for the Left mouse button
 +========================================================================================================+
 
@@ -267,7 +271,7 @@ Wheel
 WheelDown 	Turn the wheel downward (toward you).
 WheelUp 	Turn the wheel upward (away from you).
 WheelLeft
-WheelRight 	
+WheelRight
 
 [v1.0.48+]: Scroll to the left or right.
 
@@ -331,7 +335,7 @@ F1 - F24 	The 12 or more function keys at the top of most keyboards.
 Modifier Keys
 +========================================================================================================+
 LWin 	Left Win. Corresponds to the <# hotkey prefix.
-RWin 	
+RWin
 
 Right Win. Corresponds to the ># hotkey prefix.
 
@@ -344,7 +348,7 @@ RControl (or RCtrl) 	Right Control. Corresponds to the >^ hotkey prefix.
 LShift 	Left Shift. Corresponds to the <+ hotkey prefix.
 RShift 	Right Shift. Corresponds to the >+ hotkey prefix.
 LAlt 	Left Alt. Corresponds to the <! hotkey prefix.
-RAlt 	
+RAlt
 
 Right Alt. Corresponds to the >! hotkey prefix.
 
@@ -384,7 +388,7 @@ Break 	Deprecated: Use the synonym Pause instead.
 Help 	Help. This probably doesn't exist on most keyboards. It's usually not the same as F1.
 Sleep 	Sleep. Note that the sleep key on some keyboards might not work with this.
 SCnnn 	Specify for nnn the scan code of a key. Recognizes unusual keys not mentioned above. See Special Keys for details.
-VKnn 	
+VKnn
 
 Specify for nn the hexadecimal virtual key code of a key. This rarely-used method also prevents certain types of hotkeys from requiring the keyboard hook. For example, the following hotkey does not use the keyboard hook, but as a side-effect it is triggered by pressing either Home or NumpadHome:
 
@@ -419,122 +423,128 @@ Note: If you have trouble getting a script to recognize your joystick, one perso
 +========================================================================================================+
 */
 
+#NoEnv
+#SingleInstance, Force
+#Persistent
+SetBatchLines, -1
+SetMouseDelay, -1
 Hotkey, %START%, START
 Hotkey, %STOP%, STOP
+CoordMode, Mouse, Screen
 return
 
 _CPS(m, c, a, s, d, r, oy, ox, t) {
-    
+
     ; outputs clicks per second from peicewise function
-    
+
     i := m/Sqrt(a**c)
-    
+
     if((t-ox)>=(a+s)) {
-        
+
         _cps := (m*(1-d)**((t-ox)-(a+s)))+oy
-        
+
     } else if((0<=(t-ox)) && ((t-ox)<=a)) {
-        
+
         _cps := (i*Sqrt((t-ox)**c))+oy
-        
+
     } else {
-        
+
         _cps := m+oy
-        
+
     }
-    
+
     Random, _cps, (_cps-r)*100, (_cps+r)*100
     _cps /= 100
-    
+
     if (_cps < 0) {
         _cps := 0
     }
-    
-    return _cps     
-    
+
+    return _cps
+
 }
 
 
 
 
 Movement(init_ox, init_oy, new_x, new_y) {
-    
-    x := 0+(-1*init_ox)+new_x 
+
+    x := 0+(-1*init_ox)+new_x
     y := 0+(-1*init_oy)+new_y
-    
+
     return [x, y]
-    
+
 }
 
 Muller(m,s) {
-    
+
    ; Normally distributed random numbers of mean = m, std.dev = s by Box-Muller method
-   
+
    Static i, Y
-   
+
    if (i := !i) { ; every other call
-    
+
       Random U, 0, 1.0
       Random V, 0, 6.2831853071795862
-      
+
       U := sqrt(-2*ln(U))*s
       Y := m + U*sin(V)
       return m + U*cos(V)
-      
+
    }
-   
+
    return Y
 }
 
 Rad(deg){
-    return deg*(3.14159265359/180)    
+    return deg*(3.14159265359/180)
 }
 
 RadialPos(mr, standardDeviation) {
-    
+
    ; selects random point from radial distrabution function
-   
+
    Random, theta, 0, 360
    dirx := 1
    diry := 1
    refa := 0
-   
+
    while(true){
       m := Muller(mr, standardDeviation)
       if(m >= mr and m <= (mr*2)){
           break
       }
    }
-   
+
    m := m-mr
-   
+
    if (theta >= 0 && theta < 90) {
-       
+
     refa := Rad(theta)
-    
+
    } else if (theta >= 90 && theta < 180) {
-       
+
     refa := Rad(180-theta)
     dirx := -1
-    
+
    } else if (theta >= 180 && theta < 270) {
-       
-       refa := Rad(theta-180)
+
+    refa := Rad(theta-180)
     dirx := -1
     diry := -1
-    
+
    } else  {
-       
+
     refa := Rad(360-theta)
-    diry := -1    
-    
+    diry := -1
+
    }
-   
+
    oy := diry*(m*Sin(refa))
    ox := dirx*(Sqrt(((m**2)-(oy**2))))
-    
-   return [ox, oy]
-    
+
+   return [Floor(ox), Floor(oy)]
+
 }
 
 START:
@@ -547,66 +557,67 @@ SEQUENCE_STATE := KEY_DOWN_1
 
 loop
 {
-    
-    
+
+
     if(GetKeyState(CLICK, "P")){
-        
+
         init_ox := 0
         init_oy := 0
         init_t := (a_hour*3600 + a_min*60 + a_sec)*1000 + a_msec
         active := true
-        
-        
-        while (active)    {   
-        
-            oArr := RadialPos(PRESETS[PRESET][2][1], PRESETS[PRESET][2][2]) 
+
+
+        while (active)    {
+
+            oArr := RadialPos(PRESETS[PRESET][2][1], PRESETS[PRESET][2][2])
             new_ox := oArr[1]
             new_oy := oArr[2]
-            
+
             mArr := Movement(init_ox, init_oy, new_ox, new_oy)
-            
+
             new_t := (a_hour*3600 + a_min*60 + a_sec)*1000 + a_msec
 
             _CPS := _CPS(PRESETS[PRESET][1][1],PRESETS[PRESET][1][2],PRESETS[PRESET][1][3],PRESETS[PRESET][1][4],PRESETS[PRESET][1][5],PRESETS[PRESET][1][6],PRESETS[PRESET][1][7],PRESETS[PRESET][1][8],(new_t-init_t))
-            
+
             if (_CPS != 0) {
-				
+
                 Click Left
-                MouseMove, mArr[1], mArr[2], 0, R
+                DllCall("mouse_event", "UInt", 0x01, "UInt", mArr[1], "UInt", mArr[2])
                 Sleep, (1000/_CPS)
+
             }
-            
-            init_ox := new_ox 
+
+            init_ox := new_ox
             init_oy := new_oy
-            
+
             if((GetKeyState(CLICK, "P") && SEQUENCE_STATE == KEY_UP_1)){
                 SEQUENCE_STATE := KEY_DOWN_2
             }
-            
+
             if(!GetKeyState(CLICK, "P") ){
-                
-                
+
+
                 if((TOGGLE && (SEQUENCE_STATE == KEY_DOWN_2)) || (!TOGGLE)){
 
-                    oArr := Movement(init_ox, init_oy, 0, 0)
-                    MouseMove, oArr[1], oArr[2], 0, R
+                    fArr := Movement(init_ox, init_oy, 0, 0)
+                    DllCall("mouse_event", "UInt", 0x01, "UInt", fArr[1], "UInt", fArr[2])
                     active := false
                     SEQUENCE_STATE := KEY_DOWN_1
-                    
+
                 }  else if(TOGGLE && (SEQUENCE_STATE == KEY_DOWN_1)){
-                    
+
                     SEQUENCE_STATE := KEY_UP_1
-                    
+
                 }
-            
-                
+
+
             }
-                 
+
         }
-        
+
     }
-    
+
 }
 
-STOP: 
+STOP:
 ExitApp
