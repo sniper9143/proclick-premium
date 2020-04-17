@@ -82,7 +82,7 @@ TOGGLE := false ;change to "TOGGLE := false" or "TOGGLE := true"
 
 */
 
-CPS := 130
+CPS := 25
 
 /*
 
