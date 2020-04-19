@@ -73,7 +73,7 @@ TOGGLE := false ;change to "TOGGLE := false" or "TOGGLE := true"
 
 ==++++++This variable changes the maxiumum CPS you will experiance after activiating++++++==
 
-++++++How to pcik++++++
+++++++How to pick++++++
 -Before selecting your cps please research your game's/server's maximum permitted cps to avoid a ban
 -also, take note if your cps is set too high, some computers may not be able to handle too high cps and bottle
 -neck
@@ -92,7 +92,7 @@ CPS := 25
 
 ==++++++This variable changes the hotkey that is used to start
 clicking++++++==
-++++++How to pcik++++++
+++++++How to pick++++++
 -Remeber to pick a valid hotkey name out of the hotkey chart located on the bottom
 
 
@@ -110,7 +110,7 @@ CLICK = XButton2
 
 ==++++++This variable changes how you start the script++++++==
 
-++++++How to pcik++++++
+++++++How to pick++++++
 -Remember to pick a valid hotkey name out of the hotkey chart located on the bottom
 
 
